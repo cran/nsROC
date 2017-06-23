@@ -1,0 +1,30 @@
+export(gROC)
+S3method(gROC, default)
+
+export(ROCbands)
+S3method(ROCbands, default)
+
+export(cdROC)
+S3method(cdROC, default)
+
+export(compareROCindep)
+S3method(compareROCindep, default)
+
+export(compareROCdep)
+S3method(compareROCdep, default)
+
+export(metaROC)
+S3method(metaROC, default)
+
+S3method(plot, groc)
+S3method(plot, rocbands)
+S3method(plot, cdroc)
+
+S3method(print, groc)
+S3method(print, rocbands)
+S3method(print, cdroc)
+
+exportPattern("^[[:alpha:]]+")
+importFrom("grDevices", "rainbow", "col2rgb", "dev.new", "rgb")
+
+import(stats, methods, utils, graphics, sde, survival)
