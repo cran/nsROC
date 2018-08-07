@@ -1,7 +1,7 @@
 Package: nsROC
 Type: Package
 Title: Non-Standard ROC Curve Analysis
-Version: 1.0
+Version: 1.1
 Author: Sonia Perez Fernandez
 Maintainer: Sonia Perez Fernandez <uo217889@uniovi.es>
 Description: Tools for estimating Receiver Operating Characteristic (ROC) curves,
@@ -15,6 +15,6 @@ Imports: stats, methods, utils, graphics, sde, survival
 Suggests: mvtnorm
 RoxygenNote: 5.0.1
 NeedsCompilation: no
-Packaged: 2017-06-23 10:54:31 UTC; user2
+Packaged: 2018-08-07 08:35:28 UTC; sonia
 Repository: CRAN
-Date/Publication: 2017-06-23 12:36:14 UTC
+Date/Publication: 2018-08-07 09:10:03 UTC

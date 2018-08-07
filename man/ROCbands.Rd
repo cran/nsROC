@@ -3,17 +3,16 @@
 \alias{ROCbands}
 \alias{ROCbands.default}
 
-\title{Confidence bands for ROC curves
-}
+\title{Confidence bands for ROC curves}
 
 \description{
 This function computes and plots confidence bands for ROC curves (both left/right-sided and general one) using three different procedures. Particularly, one parametric approach assuming the binormal model (\emph{Demidenko}) and two non-parametric techniques (\emph{Jensen et al.} and \emph{Martinez-Camblor et al.}). See \emph{References} below.}
 
 \usage{
 ROCbands(groc, ...)
-\S3method{ROCbands}{default}(groc, method=c("PSN","JMS","DEK"), conf.level=0.95, B=500,
-         bootstrap.bar=TRUE, alpha1=NULL, s=1, a.J=1/1000, b.J=1-1/1000,
-         plot.bands=FALSE, plot.var=FALSE, ...)
+\S3method{ROCbands}{default}(groc, method = c("PSN", "JMS", "DEK"), conf.level = 0.95,
+          B = 500, bootstrap.bar = TRUE, alpha1 = NULL, s = 1, a.J = NULL, b.J = NULL,
+          plot.bands = FALSE, plot.var = FALSE, seed = 123, ...)
 }
 
 \arguments{
@@ -36,13 +35,16 @@ if TRUE, a bar showing bootstrap replication progress is displayed.
   \item{s }{
 scale parameter used to compute the smoothed kernel distribution functions in "PSN" method. The bandwidth \eqn{h = s \cdot min(m,n)^{1/5} \cdot \hat{\sigma}} where \eqn{m} and \eqn{n} stand by the number of controls and cases, respectively, is considered. Default: 1.}
   \item{a.J, b.J }{
-extremes of interval in (0,1) in which compute the regional confidence bands by "JMS" methodology. Default: (0.001, 0.999).
+extremes of interval in (0,1) in which compute the regional confidence bands by "JMS" methodology. Default: (1/Ni, 1 - 1/Ni.).
 }
   \item{plot.bands }{
 if TRUE, confidence bands at level \code{conf.level} are displayed.
 }
   \item{plot.var }{
 if TRUE, a plot of \eqn{\sigma_n^{*,1}(t)} with \eqn{t} in [0,1] (if "PSN" method is selected) or \eqn{Var(\Psi(p))} with \eqn{p} in (\code{a.J}, \code{b.J}) (if "JMS" method is selected) is displayed.
+}
+  \item{seed }{
+seed used to compute the bootstrap controls and cases samples in "PSN" method or Brownian Bridges in "JMS" method.
 }
   \item{\dots }{
 additional arguments for \code{ROCbands}. Ignored.

@@ -12,8 +12,8 @@ This function plots a 'groc', 'rocbands' or 'cdroc' object.
 }
 
 \usage{
-\S3method{plot}{groc}(x, type='s', lwd=2, xlab="False-Positive Rate",
-     ylab="True-Positive Rate", main="ROC curve", ...)
+\S3method{plot}{groc}(x, lwd = 2, xlab = "False-Positive Rate",
+      ylab = "True-Positive Rate", main = "ROC curve", ...)
 \S3method{plot}{rocbands}(x, type='s', lwd=2, xlim=c(0,1), ylim=c(0,1),
      xlab="False-Positive Rate", ylab="True-Positive Rate",
      main=paste("ROC curve \n (", obj$method, " confidence bands)", sep=""),

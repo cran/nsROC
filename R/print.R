@@ -1,35 +1,33 @@
 print.groc <- function(x, ...){
 
   obj <- x
-
   cat("Data was encoded with", obj$levels[1], "(controls) and", obj$levels[2], "(cases).\n")
-
-  if(!is.null(obj$pvalue.wilcox)){
-    if(obj$side=="right"){
-      cat("Wilcoxon rank sum test:\n \t alternative hypothesis: median(controls) < median(cases); p-value =", as.numeric(format(mean(obj$pvalue.wilcox), digits=4)),"\n")
-    }else{
-      cat("Wilcoxon rank sum test:\n \t alternative hypothesis: median(cases) < median(controls); p-value =", as.numeric(format(mean(obj$pvalue.wilcox), digits=4)),"\n")
+  if (!is.null(obj$pvalue.wilcox)) {
+    if (obj$side == "right") {
+      cat("Wilcoxon rank sum test:\n \t alternative hypothesis: median(controls) < median(cases); p-value =",  as.numeric(format(mean(obj$pvalue.wilcox), digits = 4)), "\n")
+    }
+    else {
+      cat("Wilcoxon rank sum test:\n \t alternative hypothesis: median(cases) < median(controls); p-value =", as.numeric(format(mean(obj$pvalue.wilcox), digits = 4)), "\n")
     }
   }
-
-  printside <- function(side){
-    switch(side,
-           right = cat("It is assumed that larger values of the marker indicate larger confidence that a given subject is a case.\n"),
+  printside <- function(side) {
+    switch(side, right = cat("It is assumed that larger values of the marker indicate larger confidence that a given subject is a case.\n"),
            left = cat("It is assumed that lower values of the marker indicate larger confidence that a given subject is a case.\n"),
-           both = cat("It is assumed that both lower and larges values of the marker indicate larger confidence that a given subject is a case.\n")
-    )
+           both = cat("It is assumed that both lower and larges values of the marker indicate larger confidence that a given subject is a case.\n"),
+           both2 = cat("It is assumed that both lower and larges values of the marker indicate larger confidence that a given subject is a controls.\n"))
   }
   printside(obj$side)
-
-  cat("There are", length(obj$controls),"controls and", length(obj$cases),"cases.\n")
-
-  if(obj$side=="both" && length(obj$index)!=nrow(obj$coordinates)){
-    cat("There are pairs of points returning the same sensitivity and specificity (See pairpoints.coordinates)",'\n')
+  if (!is.null(obj$Ni)) {
+    cat("Detailed ROC curve estimation was computed (time consuming) with", obj$Ni, "equidistant FPRs in (0,1).")
   }
-
-  cat("The area under the ROC curve (AUC) is ", round(obj$area,3),".\n", sep="")
-
+  if (!is.null(obj$Ni) && obj$side == "both" && length(obj$index) != nrow(obj$coordinates)) {
+    cat("There are pairs of points returning the same sensitivity and specificity (See pairpoints.coordinates)", "\n")
+  }
+  cat("There are", length(obj$controls), "controls and", length(obj$cases), "cases.\n")
+  cat("The area under the ROC curve (AUC) is ", round(obj$auc, 3), ".\n", sep = "")
 }
+
+
 
 
 print.rocbands <- function(x, ...){

@@ -161,14 +161,14 @@ metaROC.default <- function(data, Ni=1000, model=c("fixed-effects", "random-effe
   auc <- mean(sRA[-1]+sRA[-Ni])/2
   text(0.8, 0.1, paste("AUC =", round(auc,3)))
 
-  cat("The area under the summary ROC curve (AUC) is ", auc,".\n", sep="")
+  cat("The area under the summary ROC curve (AUC) is ", round(auc,3),".\n", sep="")
 
   # Youden index
 
   ind.youden <- which.max(1-t+sRA)
   youden.index <- c(1-t[ind.youden], sRA[ind.youden])
 
-  cat("The optimal specificity and sensibility (in the Youden index sense) for summary ROC curve are ", youden.index[1]," and ", youden.index[2],", respectively.\n", sep="")
+  cat("The optimal specificity and sensitivity (in the Youden index sense) for summary ROC curve are ", round(youden.index[1],3)," and ", round(youden.index[2],3),", respectively.\n", sep="")
 
 
   # Plot inter-study variability estimate
@@ -176,7 +176,7 @@ metaROC.default <- function(data, Ni=1000, model=c("fixed-effects", "random-effe
   if(model=="random-effects" && plot.inter.var){
     dev.new()
     par(mar=c(6,5,4,2))
-    plot(t, inter.var, 'l', lwd=2, xlab="t", ylab=expression(tau[M]^2 (t)), cex.lab=1.2, main="Inter-study variability")
+    plot(t, inter.var, 'l', lwd=2, xlab="t", ylab=expression(tau[M]^2~(t)), cex.lab=1.2, main="Inter-study variability")
   }
 
   results <- list(data=data, t=t, sRA=sRA, RA=RA, se.RA=se.RA, youden.index=youden.index, auc=auc, roc.j=roc.j, w.j=w.j, model=model)

@@ -170,7 +170,7 @@ cdROC.default <- function(stime, status, marker, predict.time, method=c('Cox', '
     nsp.auc <- length(roc.x)
     auc <- sum((roc.x[-1] - roc.x[-nsp.auc])*(roc.y[-1] + roc.y[-nsp.auc])/2)
 
-    results <- list(TP=sensitivity, TN=specificity, undefinedProb=undefinedProb, cutPoints=cutPoints, auc=auc, predict.time=predict.time, method=method, kernel=kernel, h=h)
+    results <- list(TPR=sensitivity, TNR=specificity, undefinedProb=undefinedProb, cutPoints=cutPoints, auc=auc, predict.time=predict.time, method=method, kernel=kernel, h=h)
 
     attr(results, 'class') <- 'cdroc'
 
